@@ -21,7 +21,7 @@ Deploy your Palo Alto Firewall hassle free using IaaC onto AWS
       - aws_creds.tf: Contains your secrets, refer point # 2 for defining the secret.
   ```
 
-  **Note:** 
+  **Note:** <br />
       1. The variables.tf has default values provided for certain variables. These can be overridden by
          specifying those variables and values in the terraform.tfvars file. <br />
       2. The bucket_id value can then be  used in a aws_instance resource to instantiate a VM-Series instance. It is used in the        user-data parameter. The instance_profile_name value is used in the iam_instance_profile parameter. Both are neeeded to define the location of the S3 bootstrap bucket and the permissions needed to access it. <br />
@@ -66,4 +66,4 @@ Commands should be run as per below order:
 **Support:**
 
 This is just a draft verion, however actual deployment has still not been tested out. Any suggestion and improvement is always welcome.<br />
-#SupportCommunity #DevelopCommunity. <br />
+****#SupportCommunity #DevelopCommunity.**** <br />

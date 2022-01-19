@@ -56,13 +56,14 @@ Usage:
 ------
 Commands should be run as per below order:
 
-   run terraform: ```terraform init```
-   run terraform: ```terraform validate```
-   run terraform: ```terraform plan```
-   run terraform: ```terraform apply```
-   run terraform: ```terraform destroy```  ==> !!! CAUTION !!! IT WILL DESTROY THE COMPLETE CONFIGURATION
-Support:
+   run terraform: ```terraform init``` /n
+   run terraform: ```terraform validate``` /n
+   run terraform: ```terraform plan``` /n
+   run terraform: ```terraform apply``` /n
+   run terraform: ```terraform destroy```  ==> !!! CAUTION !!! IT WILL DESTROY THE COMPLETE CONFIGURATION /n
 --------
+
+Support:
 
 This is just a draft verion, however actual deployment has still not been tested out. Any suggestion and improvement is always welcome.
 #SupportCommunity #DevelopCommunity.

@@ -1,12 +1,12 @@
 Deploy your Palo Alto Firewall hassle free using IaaC onto AWS
 -------------------------------------------------------
 
-0. PreRequisites:
+0. **PreRequisites:**
 -------------
  - Install Terraform on your source machine.
  - Copy your AWS access-key and secret-key from management console.
 
-1. Code Description:
+1. **Code Description:**
 -----------------
 
   ```
@@ -21,12 +21,12 @@ Deploy your Palo Alto Firewall hassle free using IaaC onto AWS
       - aws_creds.tf: Contains your secrets, refer point # 2 for defining the secret.
   ```
 
-  Note: 
+  **Note:** 
       1. The variables.tf has default values provided for certain variables. These can be overridden by
          specifying those variables and values in the terraform.tfvars file.
       2. The bucket_id value can then be  used in a aws_instance resource to instantiate a VM-Series instance. It is used in the        user-data parameter. The instance_profile_name value is used in the iam_instance_profile parameter. Both are neeeded to define the location of the S3 bootstrap bucket and the permissions needed to access it.
 
-2. Credentials Definition:
+2. **Credentials Definition:**
 ------------------------------
 
   - The structure of the ```aws_creds.tf``` file should be as follows:
@@ -39,7 +39,7 @@ Deploy your Palo Alto Firewall hassle free using IaaC onto AWS
         }
     ```
 
-3. S3 bucket Configuration details:
+3. **S3 bucket Configuration details:**
 
   - S3 bucket will be created in the region of the infrastructure will be deployed to.
   - In the bucket, following sub-folders will be created:
@@ -52,18 +52,18 @@ Deploy your Palo Alto Firewall hassle free using IaaC onto AWS
     - Upload the ``` init-cfg.txt ``` files to the ``` config ``` folder.
     - Upload the ```panupv2-all-contents-695-4002``` file to the ``` content ``` folder.
 
-Usage:
+**Usage:**
 ------
 Commands should be run as per below order:
 
-   run terraform: ```terraform init``` /n
-   run terraform: ```terraform validate``` /n
-   run terraform: ```terraform plan``` /n
-   run terraform: ```terraform apply``` /n
-   run terraform: ```terraform destroy```  ==> !!! CAUTION !!! IT WILL DESTROY THE COMPLETE CONFIGURATION /n
+   run terraform: ```terraform init``` <br />
+   run terraform: ```terraform validate``` <br />
+   run terraform: ```terraform plan``` <br />
+   run terraform: ```terraform apply``` <br />
+   run terraform: ```terraform destroy```  ==> !!! CAUTION !!! IT WILL DESTROY THE COMPLETE CONFIGURATION <br />
 --------
 
-Support:
+**Support:**
 
 This is just a draft verion, however actual deployment has still not been tested out. Any suggestion and improvement is always welcome.
 #SupportCommunity #DevelopCommunity.

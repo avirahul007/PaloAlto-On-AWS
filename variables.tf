@@ -1,6 +1,6 @@
 data "aws_availability_zones" "available" {}
 variable "aws_region" {
-  default = 'ap-south-1'
+  default = "ap-south-1"
 }
 variable "PrivateCIDR_Block" {}
 variable "PublicCIDR_Block" {}
@@ -12,8 +12,8 @@ variable "StackName" {}
 variable "fw_instance_size" {}
 variable "PANFWRegionMap" {
   type = "map"
-  default =
-    {
+  default = {
+    
       "us-west-2" = "ami-d424b5ac",
       "ap-northeast-1" =   "ami-57662d31",
       "us-west-1"      =   "ami-a95b4fc9",
@@ -28,7 +28,7 @@ variable "PANFWRegionMap" {
       "us-east-2"      =   "ami-11e1d774",
       "ca-central-1"   =   "ami-64038400",
       "ap-south-1"     =   "ami-e780d988"
-    }
+  }
 }
 variable "bootstrap_directories" {
   description = "The directories comprising the bootstrap package"

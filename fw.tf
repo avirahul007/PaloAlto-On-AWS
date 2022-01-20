@@ -4,14 +4,11 @@
 */
 resource "aws_vpc" "main" {
   cidr_block = "${var.VPCCIDR}"
-  tags = {
-    "Application" = "${var.StackName}"
-    "Network" = "MGMT"
-    "Name" = "${var.VPCName}"
-  }
-  lifecycle {
-    ignore_changes = [tags]
-  }
+  tags = merge({
+    Application = "${var.StackName}"
+    Network = "MGMT"
+    Name = "${var.VPCName}"
+  })
 }
 
 resource "aws_subnet" "NewPublicSubnet" {
@@ -19,13 +16,10 @@ resource "aws_subnet" "NewPublicSubnet" {
   cidr_block = "${var.PublicCIDR_Block}"
   availability_zone = "${data.aws_availability_zones.available.names[0]}"
   #map_public_ip_on_launch = true
-  tags {
-        "Application" = "${var.StackName}"
-        "Name" = "${join("", list(var.StackName, "NewPublicSubnet"))}"
-  }
-  lifecycle {
-    ignore_changes = [tags]
-  }
+  tags = merge({
+        Application = "${var.StackName}"
+        Name = "${join("", list(var.StackName, "NewPublicSubnet"))}"
+  })
 }
 
 resource "aws_subnet" "NewPrivateSubnet" {
@@ -33,13 +27,10 @@ resource "aws_subnet" "NewPrivateSubnet" {
   cidr_block = "${var.PrivateCIDR_Block}"
   availability_zone = "${data.aws_availability_zones.available.names[0]}"
   #map_public_ip_on_launch = true
-  tags {
-        "Application" = "${var.StackName}"
-        "Name" = "${join("", list(var.StackName, "NewWebSubnet"))}"
-  }
-  lifecycle {
-    ignore_changes = [tags]
-  }
+  tags = merge({
+        Application = "${var.StackName}"
+        Name = "${join("", list(var.StackName, "NewWebSubnet"))}"
+  })
 }
 
 resource "aws_vpc_dhcp_options" "dopt21c7d043" {
@@ -79,14 +70,11 @@ resource "aws_eip" "ManagementElasticIP" {
 
 resource "aws_internet_gateway" "InternetGateway" {
   vpc_id = "${aws_vpc.main.id}"
-  tags {
+  tags = merge({
     Application = "${var.StackName}"
     Network =  "MGMT"
     Name = "${join("-", list(var.StackName, "InternetGateway"))}"
-  }
-  lifecycle {
-    ignore_changes = [tags]
-  }
+  })
 }
 
 resource "aws_eip_association" "FWEIPManagementAssociation" {
@@ -156,11 +144,11 @@ resource "aws_instance" "FWInstance" {
 
   user_data = "${base64encode(join("", list("vmseries-bootstrap-aws-s3bucket=", var.MasterS3Bucket)))}"
 
-  tags = "${merge(map("Name", format("%s", var.name)), var.tags)}"
+  #tags = "${merge(map("Name", format("%s", var.name)), var.tags)}"
 }
 
 resource "null_resource" "check_fw_ready" {
-  triggers {
+  triggers = {
     key = "${aws_instance.FWInstance.id}"
   }
 
